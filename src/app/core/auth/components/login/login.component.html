@@ -1,0 +1,31 @@
+<main class="auth-container">
+  <section class="auth-card">
+    <div class="auth-title">
+      <h1>Welcome Back!</h1>
+      <p>Please log in with your credentials</p>
+    </div>
+
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="input-group">
+        <p-floatlabel variant="on">
+          <input pInputText id="username_label" formControlName="username" autocomplete="off" />
+          <label for="username_label">Username</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText id="password_label" formControlName="password" autocomplete="off" type="password" />
+          <label for="password_label">Password</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="forgot-password">
+        <div>
+          <input type="checkbox" />
+          <span>Remember Me</span>
+        </div>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <p-button label="Login" [loading]="loading" type="submit"></p-button>
+    </form>
+  </section>
+</main>
