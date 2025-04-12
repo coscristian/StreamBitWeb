@@ -6,7 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import {CommonModule} from '@angular/common';
 import {FloatLabel} from 'primeng/floatlabel';
 import {Router} from '@angular/router';
-
+import {Checkbox} from 'primeng/checkbox';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
     ButtonModule, InputTextModule,
     CardModule, FormsModule,
     InputTextModule, FloatLabel,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, Checkbox
   ],
   standalone: true
 })

@@ -1,31 +1,26 @@
 <main class="auth-container">
-  <section class="auth-card">
-    <div class="auth-title">
-      <h1>Welcome Back!</h1>
-      <p>Please log in with your credentials</p>
-    </div>
-
-    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="input-group">
-        <p-floatlabel variant="on">
-          <input pInputText id="username_label" formControlName="username" autocomplete="off" />
-          <label for="username_label">Username</label>
-        </p-floatlabel>
-        <p-floatlabel variant="on">
-          <input pInputText id="password_label" formControlName="password" autocomplete="off" type="password" />
-          <label for="password_label">Password</label>
-        </p-floatlabel>
+  <section class="auth-container__auth-card">
+    <div class="auth-container__card-content">
+      <div class="auth-container__auth-title">
+        <h1>Create Account</h1>
+        <p>Join us for the latest in sports, movies and events!</p>
       </div>
-
-      <div class="forgot-password">
-        <div>
-          <input type="checkbox" />
-          <span>Remember Me</span>
+      <form class="auth-container__form">
+        <input type="text" pInputText  />
+        <input type="text" pInputText />
+        <div class="auth-container__terms">
+          <p-checkbox [binary]="true" />
+          <p>I agree with Terms & Conditions</p>
         </div>
-        <a href="#">Forgot Password?</a>
+        <p-button label="Sign Up" type="submit"/>
+      </form>
+      <hr>
+      <div class="auth-container__social">
+        <p-button label="Continue with Apple" type="submit"/>
+        <p-button label="Continue with Google" type="submit"/>
+        <p-button label="Continue with Facebook" type="submit"/>
       </div>
-
-      <p-button label="Login" [loading]="loading" type="submit"></p-button>
-    </form>
+      <p class="auth-container__registered">Already registered? <a href="#">Log in</a></p>
+    </div>
   </section>
 </main>
