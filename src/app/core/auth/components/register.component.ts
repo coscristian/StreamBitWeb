@@ -9,6 +9,4 @@ import {ButtonModule} from 'primeng/button';
 })
 export class RegisterComponent {
   constructor() { }
-
-
 }
