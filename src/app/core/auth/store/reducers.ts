@@ -46,6 +46,7 @@ export const {
   name: authFeatureKey,
   reducer: authReducer,
   selectIsSubmitting,
+  selectValidationErrors,
   selectCurrentUser,
   selectIsLoading
 } = authFeature;

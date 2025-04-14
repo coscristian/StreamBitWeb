@@ -7,3 +7,8 @@ export const selectIsSubmitting = createSelector(
   selectFeature,
   (state) => state.isSubmitting
 )
+
+export const selectValidationErrors = createSelector(
+  selectFeature,
+  (state) => state.validationErrors
+)
