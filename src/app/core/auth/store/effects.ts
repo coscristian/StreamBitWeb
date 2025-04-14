@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { PersistanceService } from '../../../shared/services/persistence.service';
 import { authActions } from './actions';
+import { BackendErrors } from '../../../shared/types/BackendErrors.interface';
 
 // export const loginEffect = createEffect(
 //   (
@@ -39,19 +40,26 @@ export const registerEffect = createEffect(
   ) => {
     return action$.pipe(
       ofType(authActions.register),
-      switchMap(({request}) => {
+      switchMap(({ request }) => {
         return authService.register(request).pipe(
           map((currentUser: CurrentUser) => {
             persistanceService.set('accessToken', currentUser.token);
-            return authActions.registerSuccess({currentUser});
+            return authActions.registerSuccess({ currentUser });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            const errors = errorResponse.error.errors;
-            return of(authActions.registerFailure({errors}));
+            const backendErrors: BackendErrors = {
+              type: errorResponse.error.type,
+              title: errorResponse.error.title,
+              status: errorResponse.error.status,
+              detail: errorResponse.error.detail,
+              instance: errorResponse.error.traceId,
+              errors: {},
+            };
+            return of(authActions.registerFailure({ errors: backendErrors }));
           })
         );
       })
     );
   },
-  {functional: true}
-)
+  { functional: true }
+);

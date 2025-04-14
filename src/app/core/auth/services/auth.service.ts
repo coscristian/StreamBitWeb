@@ -14,7 +14,7 @@ export class AuthService {
 
   login(data: LoginRequest): Observable<CurrentUser> {
     // TODO: Poner URL en env
-    const url = 'https://localhost:7050/' + '/login';
+    const url = 'https://localhost:7050' + '/login';
     return this.http.post<AuthResponse>(url, data).pipe(
       map((response: AuthResponse) => ({
         username: response.username,

@@ -1,17 +1,24 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CardModule} from 'primeng/card';
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { RegisterRequest } from '../../types/RegisterRequest.interface';
 import { authActions } from '../../store/actions';
-import { selectIsSubmitting } from '../../store/reducers';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/reducers';
 import { MessageService } from 'primeng/api';
 import { Actions, ofType } from '@ngrx/effects';
 import { BackendErrors } from '../../../../shared/types/BackendErrors.interface';
+import { Toast } from 'primeng/toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,25 +26,29 @@ import { BackendErrors } from '../../../../shared/types/BackendErrors.interface'
   styleUrls: ['./register.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, FormsModule,
-    ButtonModule, InputTextModule,
-    CardModule, FormsModule,
+    CommonModule,
+    FormsModule,
+    ButtonModule,
     InputTextModule,
-    FormsModule, ReactiveFormsModule
+    CardModule,
+    FormsModule,
+    InputTextModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Toast,
   ],
-  providers: [
-    MessageService
-  ]
+  providers: [MessageService],
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
   loading: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    private store: Store,
-    private messageService: MessageService,
-    private actions$: Actions
+    private _fb: FormBuilder,
+    private _store: Store,
+    private _router: Router,
+    private _messageService: MessageService,
+    private _actions$: Actions
   ) {
     this._buildFRegisterForm();
     this._subscribeToStore();
@@ -45,50 +56,34 @@ export class RegisterComponent {
   }
 
   private _buildFRegisterForm() {
-    this.registerForm = this.fb.group({
+    this.registerForm = this._fb.group({
       username: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   private _subscribeToStore(): void {
-    this.store.select(selectIsSubmitting).subscribe((isSubmitting) => {
+    this._store.select(selectIsSubmitting).subscribe((isSubmitting) => {
       this.loading = isSubmitting;
     });
   }
 
   private _subscribeToActions(): void {
-    this.actions$.pipe(
-      ofType(authActions.registerSuccess)
-    ).subscribe(() => {
+    this._actions$.pipe(ofType(authActions.registerSuccess)).subscribe(() => {
       this.showSuccessRegistration();
+
+      setTimeout(() => {
+        this.navigateToHome();
+      }, 2500);
     });
 
-    this.actions$.pipe(
-      ofType(authActions.registerFailure)
-    ).subscribe(({ errors }) => {
-      this.showErrorRegistration(errors);
-    });
+    this._actions$
+      .pipe(ofType(authActions.registerFailure))
+      .subscribe(({ errors }) => {
+        this.showErrorRegistration(errors);
+      });
   }
-
-  showErrorRegistration(errors: BackendErrors): void {
-    const detail = this._formatErrors(errors);
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Registration failed',
-      detail,
-      life: 4000
-    });
-  }
-
-  private _formatErrors(errors: BackendErrors): string {
-    // Supongamos que errors = { email: ['has already been taken'], password: ['is too short'] }
-    return Object.entries(errors)
-      .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-      .join(' | ');
-  }
-
 
   onSubmit() {
     const request: RegisterRequest = {
@@ -98,11 +93,29 @@ export class RegisterComponent {
     };
 
     if (this.registerForm.valid) {
-      this.store.dispatch(authActions.register({ request }));
+      this._store.dispatch(authActions.register({ request }));
     }
   }
 
   showSuccessRegistration() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have been registered!' });
+    this._messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'You have been registered!',
+      life: 3000
+    });
+  }
+
+  showErrorRegistration(errors: BackendErrors): void {
+    this._messageService.add({
+      severity: 'error',
+      summary: 'Registration failed',
+      detail: errors.title || 'An error occurred during registration',
+      life: 4000,
+    });
+  }
+
+  navigateToHome(): void {
+    this._router.navigate(['/']);
   }
 }
