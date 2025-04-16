@@ -110,7 +110,7 @@ export class RegisterComponent {
     this._messageService.add({
       severity: 'error',
       summary: 'Registration failed',
-      detail: errors.title || 'An error occurred during registration',
+      detail: errors.title || 'An error occurred during registration.',
       life: 4000,
     });
   }
