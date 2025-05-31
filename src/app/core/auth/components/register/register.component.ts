@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { RegisterRequest } from '../../types/RegisterRequest.interface';
 import { authActions } from '../../store/actions';
-import { selectIsSubmitting, selectValidationErrors } from '../../store/reducers';
+import { selectIsSubmitting } from '../../store/reducers';
 import { MessageService } from 'primeng/api';
 import { Actions, ofType } from '@ngrx/effects';
 import { BackendErrors } from '../../../../shared/types/BackendErrors.interface';
