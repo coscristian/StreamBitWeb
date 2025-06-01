@@ -1,33 +1,36 @@
 import {Component, OnInit} from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { BadgeModule } from 'primeng/badge';
-import { AvatarModule } from 'primeng/avatar';
-import { InputTextModule } from 'primeng/inputtext';
-import { CommonModule } from '@angular/common';
-import { Ripple } from 'primeng/ripple';
-import { Menubar } from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
+import {BadgeModule} from 'primeng/badge';
+import {AvatarModule} from 'primeng/avatar';
+import {InputTextModule} from 'primeng/inputtext';
+import {CommonModule} from '@angular/common';
 import {MainNavbarComponent} from '../../../shared/components/streambit-main-navbar/streambit-main-navbar.component';
+import {Router, RouterOutlet} from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [BadgeModule, AvatarModule, InputTextModule, CommonModule, MainNavbarComponent]
+  imports: [BadgeModule, AvatarModule, InputTextModule, CommonModule, MainNavbarComponent, RouterOutlet]
 })
 export class HomeComponent implements OnInit {
   items: MenuItem[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
     this.items = [
       {
         label: 'Home',
         icon: 'pi pi-home',
+        command: () => this.router.navigate(['/home'])
       },
       {
         label: 'Content',
         icon: 'pi pi-star',
+        command: () => this.router.navigate(['/content'])
       },
       {
         label: 'Scores',
