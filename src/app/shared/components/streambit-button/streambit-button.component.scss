@@ -1,0 +1,46 @@
+:host ::ng-deep {
+  .p-button {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &.p-button-sm {
+      font-size: 0.875rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    &.p-button-lg {
+      font-size: 1.25rem;
+      padding: 0.8rem 1.5rem;
+    }
+
+    &.p-button-primary {
+      background-color: var(--p-primary-color) !important;
+
+      border: none;
+      color: var(--p-primary-contrast-color);
+
+      &:hover {
+        background: var(--p-primary-hover-color) !important;
+      }
+    }
+
+    &.p-button-secondary {
+      background: var(--p-secondary-color) !important;
+      border: none;
+      color: var(--p-primary-color);
+
+      &:hover {
+        background: var(--p-primary-hover-color) !important;
+
+        border-color: var(--surface-border) !important;
+        color: var(--p-primary-contrast-color);
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

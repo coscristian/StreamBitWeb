@@ -8,7 +8,7 @@ import {MainNavbarComponent} from '../../../shared/components/streambit-main-nav
 import {Router, RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'streambit-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
@@ -25,12 +25,12 @@ export class HomeComponent implements OnInit {
       {
         label: 'Home',
         icon: 'pi pi-home',
-        command: () => this.router.navigate(['/home'])
+        command: () => this.router.navigate([''])
       },
       {
         label: 'Content',
         icon: 'pi pi-star',
-        command: () => this.router.navigate(['/content'])
+        command: () => this.router.navigate(['content'])
       },
       {
         label: 'Scores',
