@@ -1,0 +1,14 @@
+<div class="layout-container" [attr.data-theme]="(activeTheme$ | async)?.name">
+  <streambit-main-navbar [items]="items">
+
+  </streambit-main-navbar>
+  <div class="navbar-end">
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <i class="pi" [ngClass]="{'pi-sun': (activeTheme$ | async)?.name === 'dark', 'pi-moon': (activeTheme$ | async)?.name === 'light'}"></i>
+    </button>
+  </div>
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

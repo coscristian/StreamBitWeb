@@ -1,24 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Avatar} from 'primeng/avatar';
-import {InputText} from 'primeng/inputtext';
-import {Menubar} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
-import {NgClass} from '@angular/common';
-import {StreambitButtonComponent} from '../streambit-button/streambit-button.component';
-import {Router} from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { CommonModule } from '@angular/common';
+import { Avatar } from 'primeng/avatar';
+import { InputText } from 'primeng/inputtext';
+import { NgClass } from '@angular/common';
+import { StreambitButtonComponent } from '../streambit-button/streambit-button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'streambit-main-navbar',
-  imports: [
-    Menubar,
-    NgClass,
-    StreambitButtonComponent
-  ],
-  standalone: true,
   templateUrl: './streambit-main-navbar.component.html',
-  styleUrl: './streambit-main-navbar.component.scss'
+  styleUrls: ['./streambit-main-navbar.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MenubarModule, Avatar, InputText, NgClass, StreambitButtonComponent]
 })
-export class MainNavbarComponent implements OnInit {
+export class MainNavbarComponent {
   @Input() items: MenuItem[] = [];
   activeItem: MenuItem | null = null;
 
