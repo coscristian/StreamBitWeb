@@ -43,7 +43,7 @@ export const streamBitPreset = definePreset(Aura, {
       950: '#0d3010'
     },
     background: {
-      default: '#0A0A0A',
+      default: '##171A1F',
       paper: '#141414'
     },
     text: {

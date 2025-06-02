@@ -1,8 +1,25 @@
-<streambit-main-navbar
-  [items]="items"
->
-</streambit-main-navbar>
+<div class="home-container">
+  <main class="main-overview">
+    <h1>Your Gateway to Sports & Cinema</h1>
+    <p>Experience the thrill of live sports and blockbuster movies, all in one app.</p>
+    <div class="main-buttons">
+      <streambit-button
+        [label]="'Join us now'"
+        [severity]="'primary'"
+        [size]="'large'"
+        (onClick)="onJoinUsClick()"
+      ></streambit-button>
+      <streambit-button
+        [label]="'Request demo'"
+        [severity]="'secondary'"
+        [size]="'large'"
+        (onClick)="onRequestDemoClick()"
+      ></streambit-button>
+    </div>
+  </main>
+  <section>
 
-<h1>Home</h1>
 
-<router-outlet></router-outlet>
+  </section>
+</div>
+

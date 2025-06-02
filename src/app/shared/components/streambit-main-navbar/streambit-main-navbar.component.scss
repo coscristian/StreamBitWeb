@@ -1,5 +1,26 @@
-:host ::ng-deep .p-menubar {
-  background-color: black;
+:host {
+  display: block;
+
+  ::ng-deep {
+    .p-menubar {
+      background-color: var(--navbar-bg);
+      border: none;
+      border-radius: 0;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
 }
 
 ::ng-deep .p-menubar-item-active .p-menubar-item-content {

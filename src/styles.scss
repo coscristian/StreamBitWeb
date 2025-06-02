@@ -1,3 +1,23 @@
+:root {
+  --background-default: #0A0A0A;
+  --background-paper: #141414;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--background-default);
+  color: var(--text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
