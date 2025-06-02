@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { CommonModule } from '@angular/common';
-import { Avatar } from 'primeng/avatar';
-import { InputText } from 'primeng/inputtext';
 import { NgClass } from '@angular/common';
 import { StreambitButtonComponent } from '../streambit-button/streambit-button.component';
 import { Router } from '@angular/router';
@@ -13,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './streambit-main-navbar.component.html',
   styleUrls: ['./streambit-main-navbar.component.scss'],
   standalone: true,
-  imports: [CommonModule, MenubarModule, Avatar, InputText, NgClass, StreambitButtonComponent]
+  imports: [CommonModule, MenubarModule, NgClass, StreambitButtonComponent]
 })
 export class MainNavbarComponent {
   @Input() items: MenuItem[] = [];
