@@ -3,8 +3,8 @@ import { Theme } from './theme.interface';
 export const lightTheme: Theme = {
   name: 'light',
   properties: {
-    // Colors
     '--background-default': '#ffffff',
+    '--section-content-default': '#FAFBFD',
     '--background-paper': '#f8f9fa',
     '--text-primary': '#1a1a1a',
     '--text-secondary': '#4a5568',
@@ -55,4 +55,4 @@ export const lightTheme: Theme = {
     '--border-radius-lg': '1rem',
     '--border-radius-full': '9999px'
   }
-}; 
+};

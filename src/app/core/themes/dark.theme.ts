@@ -3,13 +3,12 @@ import { Theme } from './theme.interface';
 export const darkTheme: Theme = {
   name: 'dark',
   properties: {
-    // Colors
     '--background-default': '#171A1F',
+    '--section-content-default': '#000000',
     '--background-paper': '#141414',
     '--text-primary': '#ffffff',
     '--text-secondary': '#94a3b8',
 
-    // Brand Colors (using your existing primary colors)
     '--primary-50': '#eeeeff',
     '--primary-100': '#e0e1ff',
     '--primary-200': '#c5c7ff',
@@ -22,19 +21,16 @@ export const darkTheme: Theme = {
     '--primary-900': '#252a8c',
     '--primary-950': '#1c207d',
 
-    // Semantic Colors
     '--success': '#4caf50',
     '--warning': '#ff9800',
     '--error': '#f44336',
     '--info': '#2196f3',
 
-    // Component specific
     '--navbar-bg': '#141414',
     '--card-bg': '#1a1a1a',
     '--button-bg': '#626AE7',
     '--input-bg': '#1a1a1a',
 
-    // Typography
     '--font-family': '"Calibri", sans-serif',
     '--font-size-xs': '0.75rem',
     '--font-size-sm': '0.875rem',
@@ -42,14 +38,12 @@ export const darkTheme: Theme = {
     '--font-size-lg': '1.125rem',
     '--font-size-xl': '1.25rem',
 
-    // Spacing
     '--spacing-xs': '0.5rem',
     '--spacing-sm': '1rem',
     '--spacing-md': '1.5rem',
     '--spacing-lg': '2rem',
     '--spacing-xl': '3rem',
 
-    // Border Radius
     '--border-radius-sm': '0.25rem',
     '--border-radius-md': '0.5rem',
     '--border-radius-lg': '1rem',
