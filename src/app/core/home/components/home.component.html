@@ -1,45 +1,29 @@
 <div class="home-container">
-  <main class="main-overview">
-    <h1>Your Gateway to Sports & Cinema</h1>
-    <p>Experience the thrill of live sports and blockbuster movies, all in one app.</p>
-    <div class="main-buttons">
-      <streambit-button
-        [label]="'Join us now'"
-        [severity]="'primary'"
-        [size]="'large'"
-        (onClick)="onJoinUsClick()"
-      ></streambit-button>
-      <streambit-button
-        [label]="'Request demo'"
-        [severity]="'secondary'"
-        [size]="'large'"
-        (onClick)="onRequestDemoClick()"
-      ></streambit-button>
-    </div>
-  </main>
-  <section class="content-container">
-    <div class="content-section">
-      <h3>Featured Sports</h3>
-      <div class="card-item-container">
-        <streambit-feature-card>
-
-        </streambit-feature-card>
-        <streambit-feature-card>
-
-        </streambit-feature-card>
-        <streambit-feature-card>
-
-        </streambit-feature-card>
+  <div class="hero-section">
+    <img src="https://images.unsplash.com/photo-1585647347384-2593bc35786b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Netflix Hero" class="hero-background">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Unlimited movies, TV shows, and more</h1>
+      <p class="hero-subtitle"></p>
+      
+      <div class="email-section">
+        <p class="email-text">Ready to watch? Enter your email to create your account.</p>
+        
+        <div class="email-form">
+          <input 
+            type="email" 
+            class="email-input" 
+            placeholder="Email"
+            name="email"
+            [(ngModel)]="this.email"
+            required
+          >
+          <div class="btn-start" (click)="onGetStarted()">
+            Start
+            <span class="arrow">›</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="content-section">
-      <h3>Feature Movies</h3>
-      <streambit-feature-card>
-
-      </streambit-feature-card>
-      <streambit-feature-card>
-
-      </streambit-feature-card>
-    </div>
-  </section>
+  </div>
 </div>

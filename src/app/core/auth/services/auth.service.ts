@@ -34,4 +34,8 @@ export class AuthService {
       }))
     );
   }
+
+  isUserAuthenticated(): boolean {
+    return true;
+  }
 }

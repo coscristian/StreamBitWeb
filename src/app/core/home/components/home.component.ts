@@ -1,31 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {BadgeModule} from 'primeng/badge';
-import {AvatarModule} from 'primeng/avatar';
-import {InputTextModule} from 'primeng/inputtext';
-import {CommonModule} from '@angular/common';
-import {StreambitButtonComponent} from '../../../shared/components/streambit-button/streambit-button.component';
-import {FeatureCardComponent} from '../../../shared/components/feature-card/feature-card.component';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'streambit-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-home',
   standalone: true,
-  imports: [BadgeModule, AvatarModule, InputTextModule, CommonModule, StreambitButtonComponent, FeatureCardComponent]
+  imports: [CommonModule, RouterModule, FormsModule],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
-  constructor() {
+export class HomeComponent {
+  constructor(
+    private _router: Router,
+  ) {
   }
+  email: string = '';
 
-  ngOnInit() {
-
-  }
-
-  onJoinUsClick() {
-  }
-
-  onRequestDemoClick() {
-
+  onGetStarted(): void {
+    if (this.email) {
+      this._router.navigate(['/register']);
+    }
   }
 }
