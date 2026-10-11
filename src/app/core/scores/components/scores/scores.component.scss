@@ -1,0 +1,10 @@
+.scores-grid {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 800px) {
+  .scores-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

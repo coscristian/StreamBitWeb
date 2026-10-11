@@ -1,0 +1,11 @@
+<div class="empty">
+  <h3>{{ title }}</h3>
+  @if (message) {
+    <p>{{ message }}</p>
+  }
+  @if (actionLabel && actionLink) {
+    <a [routerLink]="actionLink">
+      <streambit-button [label]="actionLabel" severity="primary" size="small"></streambit-button>
+    </a>
+  }
+</div>

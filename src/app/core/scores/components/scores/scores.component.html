@@ -1,0 +1,26 @@
+<div class="sb-page">
+  <header class="sb-page__header">
+    <div>
+      <h1 class="sb-page__title">Scores</h1>
+      <p class="sb-page__subtitle">Live fixtures, kickoff times, and recent results. Scores are mock data.</p>
+    </div>
+  </header>
+
+  <div class="sb-tabs">
+    @for (tab of tabs; track tab) {
+      <button type="button" class="sb-tab" [class.is-active]="activeTab === tab" (click)="setTab(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  @if (matches.length === 0) {
+    <streambit-empty-state title="No matches here" message="This filter has no mock fixtures."></streambit-empty-state>
+  } @else {
+    <div class="scores-grid">
+      @for (match of matches; track match.id) {
+        <streambit-match-card [match]="match"></streambit-match-card>
+      }
+    </div>
+  }
+</div>

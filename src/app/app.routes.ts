@@ -18,6 +18,18 @@ export const routes: Routes = [
       {
         path: 'content',
         loadChildren: () => import('./core/content/content.routes').then(m => m.contentRoutes)
+      },
+      {
+        path: 'reviews',
+        loadChildren: () => import('./core/reviews/reviews.routes').then(m => m.reviewsRoutes)
+      },
+      {
+        path: 'discussions',
+        loadChildren: () => import('./core/discussions/discussions.routes').then(m => m.discussionsRoutes)
+      },
+      {
+        path: 'scores',
+        loadChildren: () => import('./core/scores/scores.routes').then(m => m.scoresRoutes)
       }
     ]
   },

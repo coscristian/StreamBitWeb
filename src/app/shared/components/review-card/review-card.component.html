@@ -1,0 +1,19 @@
+<article class="review-card">
+  <header>
+    <streambit-avatar [src]="review.avatar" [name]="review.user" size="sm"></streambit-avatar>
+    <div>
+      <strong>{{ review.user }}</strong>
+      <p>
+        on
+        <a [routerLink]="['/content', review.movieId]">{{ review.movieTitle }}</a>
+        · {{ review.date }}
+      </p>
+    </div>
+    <streambit-rating [value]="review.rating"></streambit-rating>
+  </header>
+  <p class="review-card__text">{{ review.text }}</p>
+  <footer>
+    <span>{{ review.likes }} likes</span>
+    <span>{{ review.comments }} comments</span>
+  </footer>
+</article>

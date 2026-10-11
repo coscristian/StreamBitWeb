@@ -1,1 +1,55 @@
-<h1>Showing Content</h1>
+<div class="sb-page">
+  <header class="sb-page__header">
+    <div>
+      <h1 class="sb-page__title">Movies & series</h1>
+      <p class="sb-page__subtitle">Browse titles, filter by format, and open a film for reviews and details.</p>
+    </div>
+  </header>
+
+  <div class="sb-tabs" role="tablist">
+    @for (tab of tabs; track tab) {
+      <button
+        type="button"
+        class="sb-tab"
+        [class.is-active]="activeTab === tab"
+        (click)="setTab(tab)"
+      >
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  <div class="sb-tabs">
+    <button
+      type="button"
+      class="sb-tab"
+      [class.is-active]="activeGenre === 'All'"
+      (click)="setGenre('All')"
+    >
+      All
+    </button>
+    @for (genre of genres; track genre.name) {
+      <button
+        type="button"
+        class="sb-tab"
+        [class.is-active]="activeGenre === genre.name"
+        (click)="setGenre(genre.name)"
+      >
+        {{ genre.name }}
+      </button>
+    }
+  </div>
+
+  @if (movies.length === 0) {
+    <streambit-empty-state
+      title="No titles in this filter"
+      message="Try another format or genre. This list is still mock data."
+    ></streambit-empty-state>
+  } @else {
+    <div class="sb-grid">
+      @for (movie of movies; track movie.id) {
+        <streambit-movie-card [movie]="movie"></streambit-movie-card>
+      }
+    </div>
+  }
+</div>

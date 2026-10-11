@@ -1,0 +1,31 @@
+<article class="match-card">
+  <header>
+    <span>{{ match.competition }}</span>
+    @if (match.status === 'live') {
+      <span class="sb-chip sb-chip--live">Live</span>
+    } @else if (match.status === 'final') {
+      <span class="sb-chip">Final</span>
+    } @else {
+      <span class="sb-chip">Upcoming</span>
+    }
+  </header>
+
+  <div class="match-card__teams">
+    <div class="team">
+      <span class="crest">{{ initials(match.home) }}</span>
+      <strong>{{ match.home }}</strong>
+    </div>
+    <div class="score">
+      @if (match.status === 'upcoming') {
+        <span class="time">{{ match.time }}</span>
+      } @else {
+        <strong>{{ match.homeScore }}–{{ match.awayScore }}</strong>
+        <small>{{ match.time }}</small>
+      }
+    </div>
+    <div class="team team--away">
+      <strong>{{ match.away }}</strong>
+      <span class="crest">{{ initials(match.away) }}</span>
+    </div>
+  </div>
+</article>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {PrimeNG} from 'primeng/config';
+import { ThemeService } from './core/themes/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,11 @@ export class AppComponent implements OnInit{
   title = 'streambit-web';
 
   constructor(
-    private primeng: PrimeNG
+    private primeng: PrimeNG,
+    _themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
     this.primeng.ripple.set(true);
-  }
-
-  toggleDarkMode() {
-    const element = document.querySelector('html')!;
-    element.classList.toggle('my-app-dark');
   }
 }

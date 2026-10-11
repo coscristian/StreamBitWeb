@@ -1,0 +1,69 @@
+.auth {
+  display: grid;
+  min-height: 100vh;
+  background: #0c0e12;
+  color: #f4f6f8;
+}
+
+.auth__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 24px;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.auth__brand img {
+  height: 36px;
+  width: auto;
+}
+
+.auth__copy h1 {
+  font-family: "Archivo", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.auth__copy p {
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth__switch {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.auth__visual {
+  display: none;
+  background:
+    linear-gradient(to right, rgba(12, 14, 18, 0.28), rgba(12, 14, 18, 0.08)),
+    url("/login-background.png") center / cover no-repeat;
+}
+
+@media (min-width: 900px) {
+  .auth {
+    grid-template-columns: minmax(420px, 46%) 1fr;
+  }
+
+  .auth__panel {
+    max-width: none;
+    padding: 48px 64px;
+  }
+
+  .auth__visual {
+    display: block;
+  }
+}
