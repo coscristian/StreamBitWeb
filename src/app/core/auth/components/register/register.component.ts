@@ -18,7 +18,7 @@ import { MessageService } from 'primeng/api';
 import { Actions, ofType } from '@ngrx/effects';
 import { BackendErrors } from '../../../../shared/types/BackendErrors.interface';
 import { Toast } from 'primeng/toast';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -36,6 +36,7 @@ import { Router } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     Toast,
+    RouterLink,
   ],
   providers: [MessageService],
 })

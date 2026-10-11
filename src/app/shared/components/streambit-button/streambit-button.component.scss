@@ -26,15 +26,14 @@
     }
 
     &.p-button-secondary {
-      background: var(--p-secondary-color) !important;
-      border: none;
-      color: var(--p-primary-color);
+      background: transparent !important;
+      border: 1px solid var(--border-default) !important;
+      color: var(--text-primary) !important;
 
       &:hover {
-        background: var(--p-primary-hover-color) !important;
-
-        border-color: var(--surface-border) !important;
-        color: var(--p-primary-contrast-color);
+        background: var(--surface-elevated) !important;
+        border-color: var(--primary-400) !important;
+        color: var(--text-primary) !important;
       }
     }
 

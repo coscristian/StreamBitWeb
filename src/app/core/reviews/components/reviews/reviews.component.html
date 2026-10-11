@@ -1,0 +1,26 @@
+<div class="sb-page">
+  <header class="sb-page__header">
+    <div>
+      <h1 class="sb-page__title">Reviews</h1>
+      <p class="sb-page__subtitle">What people are saying about this week’s titles.</p>
+    </div>
+  </header>
+
+  <div class="sb-tabs">
+    @for (tab of tabs; track tab) {
+      <button type="button" class="sb-tab" [class.is-active]="activeTab === tab" (click)="setTab(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  @if (reviews.length === 0) {
+    <streambit-empty-state title="No reviews yet" message="Reviews will appear here once they are connected to your store."></streambit-empty-state>
+  } @else {
+    <div class="reviews-grid">
+      @for (review of reviews; track review.id) {
+        <streambit-review-card [review]="review"></streambit-review-card>
+      }
+    </div>
+  }
+</div>

@@ -1,45 +1,94 @@
-<div class="home-container">
-  <main class="main-overview">
-    <h1>Your Gateway to Sports & Cinema</h1>
-    <p>Experience the thrill of live sports and blockbuster movies, all in one app.</p>
-    <div class="main-buttons">
-      <streambit-button
-        [label]="'Join us now'"
-        [severity]="'primary'"
-        [size]="'large'"
-        (onClick)="onJoinUsClick()"
-      ></streambit-button>
-      <streambit-button
-        [label]="'Request demo'"
-        [severity]="'secondary'"
-        [size]="'large'"
-        (onClick)="onRequestDemoClick()"
-      ></streambit-button>
-    </div>
-  </main>
-  <section class="content-container">
-    <div class="content-section">
-      <h3>Featured Sports</h3>
-      <div class="card-item-container">
-        <streambit-feature-card>
-
-        </streambit-feature-card>
-        <streambit-feature-card>
-
-        </streambit-feature-card>
-        <streambit-feature-card>
-
-        </streambit-feature-card>
+<div class="home sb-page">
+  <section class="hero">
+    <img [src]="featured.backdrop" [alt]="featured.title" />
+    <div class="hero__content">
+      <span class="sb-chip sb-chip--accent">Featured</span>
+      <h1>{{ featured.title }}</h1>
+      <p>{{ featured.overview }}</p>
+      <div class="hero__meta">
+        <span>{{ featured.year }}</span>
+        <span>{{ featured.runtime }}</span>
+        <span>{{ featured.genres.join(' · ') }}</span>
+        <streambit-rating [value]="featured.rating"></streambit-rating>
+      </div>
+      <div class="hero__actions">
+        <a [routerLink]="['/content', featured.id]">
+          <streambit-button label="View details" severity="primary"></streambit-button>
+        </a>
+        <a routerLink="/reviews">
+          <streambit-button label="Read reviews" severity="secondary"></streambit-button>
+        </a>
       </div>
     </div>
-    <div class="content-section">
-      <h3>Feature Movies</h3>
-      <streambit-feature-card>
+  </section>
 
-      </streambit-feature-card>
-      <streambit-feature-card>
-
-      </streambit-feature-card>
+  <section>
+    <streambit-section-header title="Popular this week" actionLabel="View all" actionLink="/content"></streambit-section-header>
+    <div class="sb-media-row">
+      @for (movie of popular; track movie.id) {
+        <streambit-movie-card [movie]="movie"></streambit-movie-card>
+      }
     </div>
   </section>
+
+  <div class="home__split">
+    <section>
+      <streambit-section-header title="Live and upcoming" actionLabel="All scores" actionLink="/scores"></streambit-section-header>
+      <div class="sb-stack">
+        @for (match of liveMatches; track match.id) {
+          <streambit-match-card [match]="match"></streambit-match-card>
+        }
+      </div>
+    </section>
+
+    <section>
+      <streambit-section-header title="Trending titles" actionLabel="Browse" actionLink="/content"></streambit-section-header>
+      <ol class="trending">
+        @for (movie of trending; track movie.id; let i = $index) {
+          <li>
+            <a [routerLink]="['/content', movie.id]">
+              <span class="trending__index">{{ rank(i) }}</span>
+              <img [src]="movie.poster" [alt]="movie.title" />
+              <div>
+                <strong>{{ movie.title }}</strong>
+                <p>{{ movie.year }} · {{ movie.genres[0] }}</p>
+              </div>
+              <streambit-rating [value]="movie.rating" [compact]="true"></streambit-rating>
+            </a>
+          </li>
+        }
+      </ol>
+    </section>
+  </div>
+
+  <section>
+    <streambit-section-header title="Browse genres" actionLabel="Movies" actionLink="/content"></streambit-section-header>
+    <div class="genres">
+      @for (genre of genres; track genre.id) {
+        <a class="genre" routerLink="/content" [queryParams]="{ genre: genre.name }">
+          <img [src]="genre.image" [alt]="genre.name" />
+          <span>{{ genre.name }}</span>
+        </a>
+      }
+    </div>
+  </section>
+
+  <div class="home__split home__split--reviews">
+    <section>
+      <streambit-section-header title="Recent reviews" actionLabel="All reviews" actionLink="/reviews"></streambit-section-header>
+      <div class="sb-stack">
+        @for (review of reviews; track review.id) {
+          <streambit-review-card [review]="review"></streambit-review-card>
+        }
+      </div>
+    </section>
+    <section>
+      <streambit-section-header title="Active discussions" actionLabel="Join in" actionLink="/discussions"></streambit-section-header>
+      <div class="sb-stack">
+        @for (discussion of discussions; track discussion.id) {
+          <streambit-discussion-card [discussion]="discussion"></streambit-discussion-card>
+        }
+      </div>
+    </section>
+  </div>
 </div>

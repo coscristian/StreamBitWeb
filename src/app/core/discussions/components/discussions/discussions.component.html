@@ -1,0 +1,29 @@
+<div class="sb-page">
+  <header class="sb-page__header">
+    <div>
+      <h1 class="sb-page__title">Discussions</h1>
+      <p class="sb-page__subtitle">Threads around films, series, and live sports. Posting is not wired yet.</p>
+    </div>
+  </header>
+
+  <div class="sb-tabs">
+    @for (tab of tabs; track tab) {
+      <button type="button" class="sb-tab" [class.is-active]="activeTab === tab" (click)="setTab(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+
+  @if (discussions.length === 0) {
+    <streambit-empty-state
+      title="No threads in this topic"
+      message="Switch category or check back when discussions are connected to your API."
+    ></streambit-empty-state>
+  } @else {
+    <div class="sb-stack">
+      @for (discussion of discussions; track discussion.id) {
+        <streambit-discussion-card [id]="discussion.id" [discussion]="discussion"></streambit-discussion-card>
+      }
+    </div>
+  }
+</div>

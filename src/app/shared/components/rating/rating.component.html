@@ -1,0 +1,10 @@
+<span
+  class="rating"
+  [class.rating--compact]="compact"
+  [attr.aria-label]="'Rating ' + value + ' out of ' + max"
+>
+  <svg class="rating__star" viewBox="0 0 20 20" aria-hidden="true">
+    <path d="M10 1.8 12.4 7l5.6.8-4 3.9.9 5.6L10 14.7 4.9 17.3l.9-5.6-4-3.9L7.6 7 10 1.8Z"/>
+  </svg>
+  <span class="rating__value">{{ value | number:'1.1-1' }}</span>
+</span>

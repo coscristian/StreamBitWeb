@@ -1,0 +1,27 @@
+<main class="auth">
+  <section class="auth__panel">
+    <a class="auth__brand" routerLink="/home">
+      <img src="logo.png" alt="Streambit" />
+    </a>
+    <div class="auth__copy">
+      <h1>Welcome back</h1>
+      <p>Sign in to follow titles, keep your reviews, and check tonight’s scores.</p>
+    </div>
+    <form class="auth__form" (ngSubmit)="onSubmit()">
+      <label class="sb-field">
+        <span>Email</span>
+        <input class="sb-input" type="email" name="email" [(ngModel)]="email" placeholder="you@email.com" />
+      </label>
+      <label class="sb-field">
+        <span>Password</span>
+        <input class="sb-input" type="password" name="password" [(ngModel)]="password" placeholder="Your password" />
+      </label>
+      <streambit-button label="Log in" type="submit" severity="primary"></streambit-button>
+    </form>
+    <p class="auth__switch">
+      New here?
+      <a class="sb-link" routerLink="/register">Create an account</a>
+    </p>
+  </section>
+  <aside class="auth__visual" aria-hidden="true"></aside>
+</main>

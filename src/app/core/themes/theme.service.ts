@@ -14,15 +14,10 @@ export class ThemeService {
   constructor() {
     this.themes.set(darkTheme.name, darkTheme);
     this.themes.set(lightTheme.name, lightTheme);
-    
-    // Cargar tema guardado si existe
+
     const savedTheme = localStorage.getItem('selected-theme');
-    if (savedTheme) {
-      const theme = this.themes.get(savedTheme);
-      if (theme) {
-        this.setActiveTheme(theme);
-      }
-    }
+    const theme = (savedTheme && this.themes.get(savedTheme)) || darkTheme;
+    this.setActiveTheme(theme);
   }
 
   getActiveTheme() {

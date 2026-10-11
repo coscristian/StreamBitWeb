@@ -1,0 +1,85 @@
+@if (movie$ | async; as movie) {
+  <article class="detail sb-page">
+    <section class="detail__hero">
+      <img class="detail__backdrop" [src]="movie.backdrop" [alt]="movie.title" />
+      <div class="detail__hero-body">
+        <img class="detail__poster" [src]="movie.poster" [alt]="movie.title" />
+        <div>
+          <a class="sb-link" routerLink="/content">Movies</a>
+          <h1>{{ movie.title }}</h1>
+          <div class="detail__meta">
+            <streambit-rating [value]="movie.rating"></streambit-rating>
+            <span>{{ movie.year }}</span>
+            <span>{{ movie.runtime }}</span>
+            @if (movie.status) {
+              <span class="sb-badge">{{ movie.status }}</span>
+            }
+          </div>
+          <div class="detail__genres">
+            @for (genre of movie.genres; track genre) {
+              <span class="sb-chip">{{ genre }}</span>
+            }
+          </div>
+          <p>{{ movie.overview }}</p>
+          <div class="detail__actions">
+            <a routerLink="/reviews">
+              <streambit-button label="Write a review" severity="primary" size="small"></streambit-button>
+            </a>
+            <a routerLink="/discussions">
+              <streambit-button label="Open discussion" severity="secondary" size="small"></streambit-button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <streambit-section-header title="Cast & crew"></streambit-section-header>
+      <div class="cast">
+        @for (person of cast; track person.name) {
+          <figure>
+            <img [src]="person.photo" [alt]="person.name" />
+            <figcaption>
+              <strong>{{ person.name }}</strong>
+              <span>{{ person.role }}</span>
+            </figcaption>
+          </figure>
+        }
+      </div>
+    </section>
+
+    <section>
+      <streambit-section-header title="Reviews" actionLabel="All reviews" actionLink="/reviews"></streambit-section-header>
+      @if (reviewsFor(movie).length === 0) {
+        <streambit-empty-state
+          title="No reviews yet"
+          message="This title is waiting for the first rating. The review flow will connect here later."
+          actionLabel="See other reviews"
+          actionLink="/reviews"
+        ></streambit-empty-state>
+      } @else {
+        <div class="sb-stack">
+          @for (review of reviewsFor(movie); track review.id) {
+            <streambit-review-card [review]="review"></streambit-review-card>
+          }
+        </div>
+      }
+    </section>
+
+    <section>
+      <streambit-section-header title="More like this" actionLabel="Browse" actionLink="/content"></streambit-section-header>
+      <div class="sb-media-row">
+        @for (item of related(movie); track item.id) {
+          <streambit-movie-card [movie]="item"></streambit-movie-card>
+        }
+      </div>
+    </section>
+  </article>
+} @else {
+  <streambit-empty-state
+    title="Title not found"
+    message="This movie is not in the current catalog mock."
+    actionLabel="Back to movies"
+    actionLink="/content"
+  ></streambit-empty-state>
+}

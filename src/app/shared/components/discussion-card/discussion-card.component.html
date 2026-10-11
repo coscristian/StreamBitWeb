@@ -1,0 +1,14 @@
+<a class="discussion-card" [routerLink]="['/discussions']" [fragment]="discussion.id">
+  <div class="discussion-card__top">
+    <span class="sb-badge">{{ discussion.category }}</span>
+    <span>{{ discussion.lastActivity }}</span>
+  </div>
+  <h3>{{ discussion.title }}</h3>
+  <p>{{ discussion.excerpt }}</p>
+  <footer>
+    <streambit-avatar [src]="discussion.avatar" [name]="discussion.author" size="sm"></streambit-avatar>
+    <span>{{ discussion.author }}</span>
+    <span class="dot">·</span>
+    <span>{{ discussion.replies }} replies</span>
+  </footer>
+</a>

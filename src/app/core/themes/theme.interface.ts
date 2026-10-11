@@ -6,6 +6,7 @@ export interface Theme {
     '--background-paper': string;
     '--text-primary': string;
     '--text-secondary': string;
+    '--text-muted': string;
 
     '--primary-50': string;
     '--primary-100': string;
@@ -23,11 +24,21 @@ export interface Theme {
     '--warning': string;
     '--error': string;
     '--info': string;
+    '--live': string;
+    '--accent-rating': string;
 
     '--navbar-bg': string;
+    '--sidebar-bg': string;
+    '--header-bg': string;
     '--card-bg': string;
     '--button-bg': string;
     '--input-bg': string;
+    '--surface-elevated': string;
+    '--border-default': string;
+    '--border-subtle': string;
+    '--overlay': string;
+    '--shadow-sm': string;
+    '--focus-ring': string;
 
     '--font-family': string;
     '--font-size-xs': string;
@@ -35,12 +46,15 @@ export interface Theme {
     '--font-size-md': string;
     '--font-size-lg': string;
     '--font-size-xl': string;
+    '--font-size-2xl': string;
+    '--font-size-3xl': string;
 
     '--spacing-xs': string;
     '--spacing-sm': string;
     '--spacing-md': string;
     '--spacing-lg': string;
     '--spacing-xl': string;
+    '--spacing-2xl': string;
 
     '--border-radius-sm': string;
     '--border-radius-md': string;
