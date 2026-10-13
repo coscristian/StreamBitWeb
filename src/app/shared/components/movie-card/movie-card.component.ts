@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MovieMock } from '../../mocks/streambit.mock';
 import { RatingComponent } from '../rating/rating.component';
+import { TitleResponse } from '../../../core/titles/types/TitleResponse.interface';
 
 @Component({
   selector: 'streambit-movie-card',
@@ -11,5 +11,5 @@ import { RatingComponent } from '../rating/rating.component';
   styleUrl: './movie-card.component.scss'
 })
 export class MovieCardComponent {
-  @Input({ required: true }) movie!: MovieMock;
+  @Input({ required: true }) title!: TitleResponse;
 }

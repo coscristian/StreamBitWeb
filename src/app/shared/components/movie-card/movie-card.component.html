@@ -1,16 +1,16 @@
-<a class="movie-card" [routerLink]="['/content', movie.id]">
+<a class="movie-card" [routerLink]="['/content', title.id]">
   <div class="movie-card__poster">
-    <img [src]="movie.poster" [alt]="movie.title" />
-    @if (movie.status) {
-      <span class="sb-badge movie-card__status">{{ movie.status }}</span>
+    <img [src]="title.posterUrl" [alt]="title.title" />
+    @if (title.availability) {
+      <span class="sb-badge movie-card__status">{{ title.availability }}</span>
     }
   </div>
   <div class="movie-card__meta">
-    <h3>{{ movie.title }}</h3>
+    <h3>{{ title.title }}</h3>
     <div class="movie-card__row">
-      <span>{{ movie.year }}</span>
-      <streambit-rating [value]="movie.rating" [compact]="true"></streambit-rating>
+      <span>{{ title.year }}</span>
+      <streambit-rating [value]="title.rating" [compact]="true"></streambit-rating>
     </div>
-    <p>{{ movie.genres.slice(0, 2).join(' · ') }}</p>
+    <p>{{ title.genres.slice(0, 2).join(' · ') }}</p>
   </div>
 </a>

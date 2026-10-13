@@ -66,14 +66,16 @@
       }
     </section>
 
+    <!-- TODO: wire related titles from API (TitleResponse) instead of MovieMock
     <section>
       <streambit-section-header title="More like this" actionLabel="Browse" actionLink="/content"></streambit-section-header>
       <div class="sb-media-row">
-        @for (item of related(movie); track item.id) {
-          <streambit-movie-card [movie]="item"></streambit-movie-card>
+        @for (title of related(movie); track title.id) {
+          <streambit-movie-card [title]="title"></streambit-movie-card>
         }
       </div>
     </section>
+    -->
   </article>
 } @else {
   <streambit-empty-state
