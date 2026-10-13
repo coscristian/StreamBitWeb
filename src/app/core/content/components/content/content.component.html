@@ -23,32 +23,32 @@
     <button
       type="button"
       class="sb-tab"
-      [class.is-active]="activeGenre === 'All'"
-      (click)="setGenre('All')"
+      [class.is-active]="activeGenreId === 0"
+      (click)="setGenre(0, 'All')"
     >
       All
     </button>
-    @for (genre of genres; track genre.name) {
+    @for (genre of genres; track genre.id) {
       <button
         type="button"
         class="sb-tab"
-        [class.is-active]="activeGenre === genre.name"
-        (click)="setGenre(genre.name)"
+        [class.is-active]="activeGenreId === genre.id"
+        (click)="setGenre(genre.id, genre.name)"
       >
         {{ genre.name }}
       </button>
     }
   </div>
 
-  @if (movies.length === 0) {
+  @if (titles.length === 0) {
     <streambit-empty-state
       title="No titles in this filter"
       message="Try another format or genre. This list is still mock data."
     ></streambit-empty-state>
   } @else {
     <div class="sb-grid">
-      @for (movie of movies; track movie.id) {
-        <streambit-movie-card [movie]="movie"></streambit-movie-card>
+      @for (title of titles; track title.id) {
+        <streambit-movie-card [title]="title"></streambit-movie-card>
       }
     </div>
   }

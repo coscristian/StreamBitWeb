@@ -6,11 +6,11 @@ import {
   getMovieById,
   getReviewsForMovie,
   MOCK_CAST,
-  MOCK_MOVIES,
+  // MOCK_MOVIES,
   MovieMock,
   ReviewMock
 } from '../../../../shared/mocks/streambit.mock';
-import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
+// import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
 import { ReviewCardComponent } from '../../../../shared/components/review-card/review-card.component';
 import { RatingComponent } from '../../../../shared/components/rating/rating.component';
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
@@ -23,7 +23,7 @@ import { StreambitButtonComponent } from '../../../../shared/components/streambi
   imports: [
     AsyncPipe,
     RouterLink,
-    MovieCardComponent,
+    // MovieCardComponent,
     ReviewCardComponent,
     RatingComponent,
     EmptyStateComponent,
@@ -44,7 +44,7 @@ export class ContentDetailComponent {
     return getReviewsForMovie(movie.id);
   }
 
-  related(movie: MovieMock): MovieMock[] {
-    return MOCK_MOVIES.filter((item) => item.id !== movie.id).slice(0, 5);
-  }
+  // related(movie: MovieMock): MovieMock[] {
+  //   return MOCK_MOVIES.filter((item) => item.id !== movie.id).slice(0, 5);
+  // }
 }

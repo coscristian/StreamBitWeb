@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MOCK_GENRES, MOCK_MOVIES, MovieMock } from '../../../../shared/mocks/streambit.mock';
 import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component';
 import { GenreResponse } from '../../../genres/types/GenreResponse.interface';
 import { GenreService } from '../../../services/genre.service';
+import { TitleResponse } from '../../../titles/types/TitleResponse.interface';
+import { TitleService } from '../../../services/title.service';
+import { TitleListRequest } from '../../../titles/types/TitleListRequest.interface';
 
 @Component({
   selector: 'streambit-content',
@@ -15,27 +17,37 @@ import { GenreService } from '../../../services/genre.service';
 })
 export class ContentComponent implements OnInit {
   tabs = ['All', 'Movies', 'Series', 'Coming soon'];
-  activeTab = 'All';
-  //genres = ['All', ...MOCK_GENRES.map((genre) => genre.name)];
+  activeTab: string = 'All';  
   genres: GenreResponse[] = [];
-  activeGenre = 'All';
-  movies: MovieMock[] = MOCK_MOVIES;
+  activeGenreId: number = 0;
+  titles: TitleResponse[] = [];
+
+  titlesListRequest: TitleListRequest = {
+    format: this.activeTab,
+    page: 1,
+    pageSize: 10,
+    orderBy: 'popularity',
+    sortAscending: false,
+    genreId: this.activeGenreId
+  };
 
   constructor(
     private route: ActivatedRoute,
-    private readonly genreService: GenreService
+    private readonly genreService: GenreService,
+    private readonly titleService: TitleService
   ) {
     const genre = this.route.snapshot.queryParamMap.get('genre');
     if (genre) {
-      this.activeGenre = genre;
-    }
-    this.applyFilters();
+      this.activeGenreId = parseInt(genre);
+    }    
   }
 
   ngOnInit(): void {
     this.genreService.getGenres().subscribe((genres) => {
-      this.genres = genres;
+      this.genres = genres.slice(0, 5); // TODO: Remove this once the API feature is defined and implemented to get genres
     });
+
+    this.applyFilters();
   }
 
   setTab(tab: string): void {
@@ -43,20 +55,17 @@ export class ContentComponent implements OnInit {
     this.applyFilters();
   }
 
-  setGenre(genre: string): void {
-    this.activeGenre = genre;
+  setGenre(id: number, name: string): void {
+    this.activeGenreId = id;
     this.applyFilters();
   }
 
-  private applyFilters(): void {
-    this.movies = MOCK_MOVIES.filter((movie) => {
-      const tabMatch =
-        this.activeTab === 'All' ||
-        (this.activeTab === 'Series' && movie.status === 'Series') ||
-        (this.activeTab === 'Coming soon' && movie.status === 'Coming soon') ||
-        (this.activeTab === 'Movies' && movie.status !== 'Series');
-      const genreMatch = this.activeGenre === 'All' || movie.genres.includes(this.activeGenre);
-      return tabMatch && genreMatch;
+  private applyFilters(): void {        
+    this.titlesListRequest.format = this.activeTab;
+    this.titlesListRequest.genreId = this.activeGenreId;
+
+    this.titleService.getTitles(this.titlesListRequest).subscribe((titles) => {
+      this.titles = titles.results;
     });
   }
 }

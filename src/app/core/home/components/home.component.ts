@@ -8,7 +8,7 @@ import {
   MOCK_REVIEWS
 } from '../../../shared/mocks/streambit.mock';
 import { StreambitButtonComponent } from '../../../shared/components/streambit-button/streambit-button.component';
-import { MovieCardComponent } from '../../../shared/components/movie-card/movie-card.component';
+// import { MovieCardComponent } from '../../../shared/components/movie-card/movie-card.component';
 import { ReviewCardComponent } from '../../../shared/components/review-card/review-card.component';
 import { DiscussionCardComponent } from '../../../shared/components/discussion-card/discussion-card.component';
 import { MatchCardComponent } from '../../../shared/components/match-card/match-card.component';
@@ -23,7 +23,7 @@ import { RatingComponent } from '../../../shared/components/rating/rating.compon
   imports: [
     RouterLink,
     StreambitButtonComponent,
-    MovieCardComponent,
+    // MovieCardComponent,
     ReviewCardComponent,
     DiscussionCardComponent,
     MatchCardComponent,
@@ -33,7 +33,7 @@ import { RatingComponent } from '../../../shared/components/rating/rating.compon
 })
 export class HomeComponent {
   featured = MOCK_MOVIES[0];
-  popular = MOCK_MOVIES.slice(0, 8);
+  // popular = MOCK_MOVIES.slice(0, 8);
   trending = MOCK_MOVIES.slice(1, 6);
   genres = MOCK_GENRES;
   liveMatches = MOCK_MATCHES.filter((match) => match.status === 'live' || match.status === 'upcoming').slice(0, 3);

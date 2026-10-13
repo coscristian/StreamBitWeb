@@ -22,14 +22,16 @@
     </div>
   </section>
 
+  <!--
   <section>
     <streambit-section-header title="Popular this week" actionLabel="View all" actionLink="/content"></streambit-section-header>
     <div class="sb-media-row">
-      @for (movie of popular; track movie.id) {
-        <streambit-movie-card [movie]="movie"></streambit-movie-card>
+      @for (title of popular; track title.id) {
+        <streambit-movie-card [title]="title"></streambit-movie-card>
       }
     </div>
   </section>
+  -->
 
   <div class="home__split">
     <section>
